@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/.
+    image: nginx
+    ports:
+      - "443:443"
+    networks:
+      - net
+    volumes:
+      - wp-vol:/var/www/
+    depends_on:
+      - wordpress
+    restart: always
+      
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis/.
+    image: redis
+    env_file:
+      - ./.env
+    networks:
+      - net
+    restart: always
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/.
+    image: mariadb
+    networks:
+      - net
+    env_file:
+      - ./.env   
+    volumes:  
+      - mdb-vol:/var/lib/mysql/
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/.
+    image: wordpress
+    networks:
+      - net
+    env_file:
+      - ./.env
+    depends_on:
+      - mariadb
+      - redis   
+    volumes:
+      - wp-vol:/var/www/
+    restart: always
+
+volumes:
+  wp-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/hfanzaou/data/wordpress
+      o: bind
+
+  mdb-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/hfanzaou/data/mariadb
+      o: bind
+
+networks:
+  net:
+    name: docker_net
+    driver: bridge  
