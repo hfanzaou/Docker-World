@@ -1,6 +1,6 @@
 # Inception
 
-The project involves setting up a small infrastructure composed of different services within a virtual machine using Docker Compose. Each Docker image must correspond to its respective service, and services must run in dedicated containers. Dockerfiles must be written for each service and called in `docker-compose.yml` via the `Makefile`. The following tasks are mandatory:
+The project involves setting up a small infrastructure composed of different services within a virtual machine using Docker Compose. Each Docker image must correspond to its respective service, and services must run in dedicated containers. Dockerfiles must be written for each service and called in `docker-compose.yml` via the `Makefile`. This project includes the following tasks:
 
 - Setting up NGINX with TLSv1.2 or TLSv1.3.
 - Installing and configuring WordPress + php-fpm.
@@ -12,7 +12,7 @@ The project involves setting up a small infrastructure composed of different ser
 
 ## Requirements
 
-- linux environment is prefered
+- linux environment is preferred
 - Docker
 - Docker Compose
 
