@@ -1,4 +1,4 @@
-# Inception
+# Docker Space
 
 The project involves setting up a small infrastructure composed of different services within a virtual machine using Docker Compose. Each Docker image must correspond to its respective service, and services must run in dedicated containers. Dockerfiles must be written for each service and called in `docker-compose.yml` via the `Makefile`. This project includes the following tasks:
 
